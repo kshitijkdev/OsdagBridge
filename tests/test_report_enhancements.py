@@ -71,9 +71,9 @@ def test_component_ratios_use_all_four_actual_result_schemas():
             'G1': {'checks': [{'dcr': 0.8}, {'dcr': 1.3}]},
             'EB1': {'checks': [{'dcr': 99}]} }},
         'deck_design_results': {'ur_bot_uls': 0.9, 'ur_top_uls': float('nan')},
-        'crossbracing_design_results': {'G1-G2': {'diagonal': {
+        'crossbracing_design_results': {'G1-G2': {'cb_type': 'X-Bracing', 'diagonal': {
             'tension': {'Member.efficiency': 0.7}, 'compression': None}}},
-        'end_diaphragm_design_results': {'G1-G2': {'chord': {
+        'end_diaphragm_design_results': {'G1-G2': {'ed_type': 'Cross Bracing', 'chord': {
             'compression': {'Optimum.UR': 1.1}}}},
     }
     assert [value for _, value in component_utilizations(outputs)] == [1.3, 0.9, 0.7, 1.1]

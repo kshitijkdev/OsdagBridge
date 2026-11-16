@@ -13,7 +13,7 @@ from osdagbridge.core.bridge_types.plate_girder.plategirderbridge import PlateGi
 
 if __name__ == '__main__':
     inputs = dict(BASIC_INPUT_DICT)
-    inputs.update({KEY_SPAN: 20.0, KEY_CARRIAGEWAY_WIDTH: 7.5, KEY_SKEW_ANGLE: 0.0,
+    inputs.update({KEY_SPAN: 20.0, KEY_CARRIAGEWAY_WIDTH: 7.5, KEY_SKEW_ANGLE: 10.0,
                    KEY_DESIGN_MODE: 'Custom',
                    KEY_PROJECT_LOCATION: {'method': 'custom_data', 'data': {},
                                           'weather_data': {'wind_speed': 39, 'zone': 'II',

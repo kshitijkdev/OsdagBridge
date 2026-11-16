@@ -172,9 +172,13 @@ def ch5_design_checks(checks_data, bridge, figure_paths=None) -> str:
     # Diaphragm results have their own schema; cross-bracing rows belong to §5.3.
     diaphragm_rows = []
     for pair, members in (bridge.output_dict.get("end_diaphragm_design_results") or {}).items():
+        if not isinstance(members, dict):
+            continue
         for member, checks in members.items():
+            if not isinstance(checks, dict):
+                continue
             for force, result in checks.items():
-                if not result:
+                if not isinstance(result, dict) or not result:
                     continue
                 designation = result.get("section_size.designation") or result.get("Optimum.Designation") or "---"
                 ratio = result.get("Member.efficiency")

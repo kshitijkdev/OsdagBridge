@@ -17,9 +17,11 @@ Reusing the existing raw LaTeX chapter templates keeps engineering values and th
 
 [Original report](report-comparison/Report_Before.pdf) Â· [Updated report](report-comparison/Report_After.pdf)
 
-Both reports use one calculated 20 m, four-girder custom bridge case. The original ZIP's compiler returned exit code 1 with table alignment errors but still emitted the baseline PDF. The enhanced report compiled in two successful passes. The final build showed no vertical box overflow; the updated source has a header block for each longtable. The G4 table, live-load split, and both chart pages were visually reviewed.
+Both reports use one calculated 20 m, four-girder custom bridge case with a 10° skew. The original ZIP's compiler returned exit code 1 with table alignment errors but still emitted the baseline PDF. The enhanced report compiled in two successful passes. The final build showed no vertical box overflow; the updated source has a header block for each longtable. The G4 table, live-load split, and both chart pages were visually reviewed.
 
-The sample returned utilization ratios for the girders, deck and cross bracing. It did not return an end diaphragm utilization ratio, so that chart category is labeled unavailable; its steel take-off is reported separately. The case has no footway and no explicit lane count. It is a format verification case and contains failed girder checks. The full desktop Design â†’ Generate Report flow was not verified: the app started but the Windows desktop interaction did not finish. The calculation engine and the production report entry point were exercised directly. The drawing chapter contains placeholders because no GUI CAD exports were provided.
+The sample returned actual utilization ratios for all four component groups, including an end diaphragm governing ratio of 0.58. The case has no footway and no explicit lane count. It is a format verification case and contains failed girder checks. The straight (0° skew) case did not yield end diaphragm design results from the existing solver; the comparison uses the supported 10° case without changing engineering calculations.
+
+Desktop verification reached a successful Design run, then exposed a report crash: desktop result dictionaries contain text metadata alongside member results. The chart reader and diaphragm table now skip metadata entries, covered by the result-schema regression test. The fixed desktop export remains pending verification. The calculation engine and production report entry point compiled the updated comparison successfully. The comparison drawing chapter contains placeholders because no GUI CAD exports were provided.
 
 ## Reproduce
 

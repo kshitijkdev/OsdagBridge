@@ -90,7 +90,9 @@ def component_utilizations(outputs):
     def bracing(key):
         return maximum(raw.get('Member.efficiency', raw.get('Optimum.UR'))
                        for members in (outputs.get(key) or {}).values()
-                       for forces in members.values() for raw in forces.values()
+                       if isinstance(members, dict)
+                       for forces in members.values() if isinstance(forces, dict)
+                       for raw in forces.values()
                        if isinstance(raw, dict))
     return [('Steel plate girders', girder), ('Concrete deck slab', deck),
             ('Cross bracing', bracing('crossbracing_design_results')),
